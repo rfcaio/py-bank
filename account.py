@@ -22,3 +22,23 @@ class Account:
 
     def withdraw(self, amount):
         self.__balance -= amount
+
+
+    @property
+    def balance(self):
+        return self.__balance
+
+
+    @property
+    def limit(self):
+        return self.__limit
+
+
+    @limit.setter
+    def limit(self, limit):
+        self.__limit = limit
+
+
+    @property
+    def owner(self):
+        return self.__owner
