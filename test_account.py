@@ -29,6 +29,11 @@ class TestAccount(TestCase):
         self.assertEqual(self.account.balance, 50.0)
 
 
+    def test_withdraw_should_raise_an_error_when_there_is_not_enough_balance(self):
+        with self.assertRaises(ValueError):
+            self.account.withdraw(1500.0)
+
+
     def test_balance_should_get_the_account_balance(self):
         self.assertEqual(self.account.balance, 100.0)
 

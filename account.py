@@ -21,7 +21,14 @@ class Account:
 
 
     def withdraw(self, amount):
-        self.__balance -= amount
+        if (self.__can_withdraw(amount)):
+            self.__balance -= amount
+        else:
+            raise ValueError('There is not enough balance.')
+
+
+    def __can_withdraw(self, amount):
+        return amount <= self.__balance + self.__limit
 
 
     @property
