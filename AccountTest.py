@@ -3,7 +3,7 @@ from unittest import TestCase
 from Account import Account
 
 
-class TestAccount(TestCase):
+class AccountTest(TestCase):
     def setUp(self):
         self.account = Account(477, 'John Connor', 100.0, 1000.0)
 
