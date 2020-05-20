@@ -21,6 +21,27 @@ class AccountTest(TestCase):
         self.account.deposit(100)
         self.assertEqual(self.account.balance, 200)
 
+    def test_transfer(self):
+        destination = Account(50)
+
+        with self.assertRaises(TypeError):
+            self.account.transfer(50, {'balance': 50})
+
+        with self.assertRaises(ValueError):
+            self.account.transfer(-50, destination)
+
+        with self.assertRaises(ValueError):
+            self.account.transfer(0, destination)
+
+        # when trying to transfer an amount greater than the balance
+        with self.assertRaises(ValueError):
+            self.account.transfer(150, destination)
+            self.assertEqual(destination.balance, 50)
+
+        self.account.transfer(50, destination)
+        self.assertEqual(self.account.balance, 50)
+        self.assertEqual(destination.balance, 100)
+
     def test_withdraw(self):
         with self.assertRaises(ValueError):
             self.account.withdraw(-100)

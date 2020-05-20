@@ -11,6 +11,17 @@ class Account:
             raise ValueError('%.2f is not a valid value to deposit.')
         self.__balance += amount
 
+    def transfer(self, amount, destination):
+        if not isinstance(destination, Account):
+            raise TypeError('Could not transfer to an invalid account.')
+        if amount <= 0:
+            raise ValueError('%.2f is not a valid value to deposit.')
+        try:
+            self.withdraw(amount)
+        except Exception:
+            raise
+        destination.deposit(amount)
+
     def withdraw(self, amount):
         if amount <= 0:
             raise ValueError('%.2f is not a valid value to withdraw.')
