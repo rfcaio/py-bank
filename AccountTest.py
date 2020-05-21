@@ -7,6 +7,13 @@ class AccountTest(TestCase):
     def setUp(self):
         self.account = Account(100)
 
+    def test_init(self):
+        with self.assertRaises(ValueError):
+            Account(-100)
+
+        account = Account()
+        self.assertEqual(account.balance, 0)
+
     def test_balance(self):
         with self.assertRaises(AttributeError):
             self.account.balance = 10000
