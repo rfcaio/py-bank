@@ -1,5 +1,8 @@
 class User:
     def __init__(self, name):
+        if not isinstance(name, str):
+            raise TypeError('%s is not a valid name.' % name)
+
         self.__name = name
 
     @property
