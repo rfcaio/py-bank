@@ -2,6 +2,8 @@ from unittest import TestCase
 
 from Account import Account
 
+from exceptions import InsufficientBalanceError
+
 
 class AccountTest(TestCase):
     def setUp(self):
@@ -40,8 +42,7 @@ class AccountTest(TestCase):
         with self.assertRaises(ValueError):
             self.account.transfer(0.0, destination)
 
-        # when trying to transfer an amount greater than the balance
-        with self.assertRaises(ValueError):
+        with self.assertRaises(InsufficientBalanceError):
             self.account.transfer(150.0, destination)
             self.assertEqual(destination.balance, 50.0)
 
@@ -56,7 +57,7 @@ class AccountTest(TestCase):
         with self.assertRaises(ValueError):
             self.account.withdraw(0.0)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(InsufficientBalanceError):
             self.account.withdraw(500.0)
 
         self.account.withdraw(50.0)
