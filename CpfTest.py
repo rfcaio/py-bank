@@ -14,13 +14,19 @@ class CpfTest(TestCase):
             Cpf(18442699066)
 
         with self.assertRaises(InvalidCpfError):
-            Cpf('1844269906a')
+            Cpf('1844269906')
 
         with self.assertRaises(InvalidCpfError):
             Cpf('184426990600')
 
         with self.assertRaises(InvalidCpfError):
-            Cpf('1844269906')
+            Cpf('abcdefghijk')
+
+        with self.assertRaises(InvalidCpfError):
+            Cpf('00000000000')
+
+        with self.assertRaises(InvalidCpfError):
+            Cpf('18442699067')
 
     def test_value(self):
         with self.assertRaises(AttributeError):
