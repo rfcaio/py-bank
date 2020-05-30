@@ -10,6 +10,9 @@ class AccountTest(TestCase):
         self.account = Account(100.0)
 
     def test_init(self):
+        with self.assertRaises(TypeError):
+            Account('100.0')
+
         with self.assertRaises(ValueError):
             Account(-100.0)
 

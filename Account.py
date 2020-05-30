@@ -3,6 +3,9 @@ from exceptions import InsufficientBalanceError
 
 class Account:
     def __init__(self, balance=0):
+        if not (isinstance(balance, float) or isinstance(balance, int)):
+            raise TypeError('Only numbers are accepted to create an account.')
+
         if balance < 0:
             raise ValueError('%.2f is not a valid account balance.' % balance)
 
