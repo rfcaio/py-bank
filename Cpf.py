@@ -15,6 +15,10 @@ class Cpf:
 
         self.__value = value
 
+    def format(self):
+        cpf_parts = re.match(r'^(\d{3})(\d{3})(\d{3})(\d{2})$', self.__value)
+        return cpf_parts.expand(r'\g<1>.\g<2>.\g<3>-\g<4>')
+
     @property
     def value(self):
         return self.__value
