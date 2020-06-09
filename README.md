@@ -1,3 +1,3 @@
 # About
 
-> A simple repository based on Alura's course: introduction to object oriented programming in Python.
+> A simple bank model for object oriented programming studies.
