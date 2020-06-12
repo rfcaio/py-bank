@@ -7,6 +7,10 @@ class EmailTest(TestCase):
     def setUp(self):
         self.email = Email('johndoe@mail.com')
 
+    def test_init(self):
+        with self.assertRaises(TypeError):
+            Email(0)
+
     def test_value(self):
         with self.assertRaises(AttributeError):
             self.email.value = 'johndoe@mail.org'
