@@ -23,10 +23,18 @@ class Cpf:
     def value(self):
         return self.__value
 
-    def __get_verify_digit(self, cpf):
-        multiplier = len(cpf) + 1
+    def __generate_cpf(self, incomplete_cpf):
+        if len(incomplete_cpf) == 11:
+            return incomplete_cpf
+
+        return self.__generate_cpf(
+            incomplete_cpf + self.__get_verify_digit(incomplete_cpf)
+        )
+
+    def __get_verify_digit(self, incomplete_cpf):
+        multiplier = len(incomplete_cpf) + 1
         digit_sum = 0
-        for digit in cpf:
+        for digit in incomplete_cpf:
             digit_sum += int(digit) * multiplier
             multiplier -= 1
         factor = digit_sum % 11
@@ -38,12 +46,6 @@ class Cpf:
         if cpf in EQUAL_DIGITS_CPFS:
             return False
 
-        first_nine_digits = cpf[0:9]
-        first_check_digit = self.__get_verify_digit(first_nine_digits)
-        second_check_digit = (
-            self.__get_verify_digit(first_nine_digits + first_check_digit)
-        )
-        obtained_cpf = (
-            first_nine_digits + first_check_digit + second_check_digit
-        )
-        return cpf == obtained_cpf
+        first_nine_cpf_digits = cpf[0:9]
+
+        return cpf == self.__generate_cpf(first_nine_cpf_digits)
