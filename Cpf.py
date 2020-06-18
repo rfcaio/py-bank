@@ -34,9 +34,11 @@ class Cpf:
     def __get_verify_digit(self, incomplete_cpf):
         multiplier = len(incomplete_cpf) + 1
         digit_sum = 0
+
         for digit in incomplete_cpf:
             digit_sum += int(digit) * multiplier
             multiplier -= 1
+
         factor = digit_sum % 11
         return str(11 - factor if factor >= 2 else 0)
 
