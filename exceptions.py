@@ -4,3 +4,7 @@ class InsufficientBalanceError(Exception):
 
 class InvalidCpfError(Exception):
     pass
+
+
+class InvalidEmailError(Exception):
+    pass
